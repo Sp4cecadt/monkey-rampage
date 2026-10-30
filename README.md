@@ -1,7 +1,7 @@
 # Monkey Rampage 🦍🏙️
 
 A cartoon 3D city-smashing browser game. Play as **Bananas**, a giant indestructible monkey, and level a toy city of
-skyscrapers and little windowed buildings — punch through walls, climb towers, throw cars, eat cops and swat army choppers.
+skyscrapers and little windowed buildings — punch through walls, climb towers, throw cars, eat cops and soldiers, flatten tanks and swat army choppers.
 
 **Play:** https://sp4cecadt.github.io/monkey-rampage/ (works on desktop and iPhone; Share → Add to Home Screen to install)
 
@@ -22,6 +22,7 @@ skyscrapers and little windowed buildings — punch through walls, climb towers,
 - Fires start randomly (more often on damaged buildings), spread, and weaken burning chunks; flames and smoke plumes.
 - Traffic drives in lanes, queues, flees, U-turns and freezes in terror. Grab and throw cars (damage scales with speed), punch them to wreck them; wrecks burn and can explode.
 - Police and army men run in and shoot (cosmetic hits counter); grab one to eat him (cartoon gulp).
+- Army tanks roll in once the city is ~8% wrecked (or ~100 s in), swivel their turrets and fire cannon shells (cosmetic). Punch one 3× to blow it up, or grab and throw it into a building (+1500).
 - Army helicopter every 45–90 s (sooner as destruction rises): circles, dives and fires tracers. Grab it from a roof, while climbing high, or with jump + grab, then crush it or throw it into a building (+5000).
 - HUD with score, combo multiplier, % destroyed, timer, hits taken; win screen at 70% destroyed; pause/restart; low-graphics toggle; installable PWA.
 
