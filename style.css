@@ -1,0 +1,67 @@
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: #8fd3ff; font-family: "Trebuchet MS", system-ui, sans-serif; color: #fff; user-select: none; -webkit-user-select: none; touch-action: none; }
+#c { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+button { font: inherit; cursor: pointer; }
+.screen { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(20, 30, 60, .35); z-index: 20; padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) 10px max(10px, env(safe-area-inset-left)); overflow: auto; }
+.screen[hidden] { display: none; }
+.panel { background: rgba(255, 255, 255, .93); color: #2b2140; border-radius: 22px; padding: 18px 22px; box-shadow: 0 10px 0 rgba(0,0,0,.15), 0 20px 40px rgba(0,0,0,.25); text-align: center; max-height: 100%; overflow: auto; display: flex; flex-direction: column; gap: 10px; min-width: 260px; }
+.panel.wide { max-width: 860px; width: 100%; }
+h1 { margin: 0; font-size: clamp(28px, 6vw, 52px); letter-spacing: 2px; color: #ff7a00; text-shadow: 3px 3px 0 #7a3300; font-weight: 900; }
+h1 span { color: #ff3b3b; text-shadow: 3px 3px 0 #6e0f0f; }
+h2 { margin: 0; color: #ff7a00; }
+.sub { margin: 0; font-weight: bold; color: #6a5a8a; }
+.cards { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.card { width: 145px; border-radius: 16px; padding: 10px; background: #fff3d6; border: 3px solid #ffb347; position: relative; }
+.card.sel { background: #fff0c2; border-color: #ff7a00; box-shadow: 0 0 0 4px rgba(255,122,0,.25); width: 190px; }
+.card .art { font-size: 54px; line-height: 1.1; }
+.card.sel .art { font-size: 70px; animation: bob 1.2s ease-in-out infinite; }
+.card h3 { margin: 4px 0; } .card p { margin: 0 0 6px; font-size: 12px; color: #5b4a6b; }
+.card.locked { background: #e5e2ec; border-color: #b9b3c8; } .card.locked .art { filter: grayscale(1) brightness(.35); }
+.card.locked.nope { animation: shake .35s; }
+.tag { font-size: 12px; font-weight: bold; background: #9c95ad; color: #fff; border-radius: 10px; padding: 3px 6px; display: inline-block; }
+.tag.ok { background: #3db86b; }
+.stat { font-size: 11px; display: flex; align-items: center; gap: 6px; text-align: left; } .stat i { flex: 1; height: 7px; background: linear-gradient(90deg, #ff7a00 var(--v), #eadfcf var(--v)); border-radius: 4px; }
+@keyframes bob { 50% { transform: translateY(-6px) rotate(-4deg); } }
+@keyframes shake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+.big { font-size: 22px; font-weight: 900; padding: 12px 26px; border: 0; border-radius: 16px; background: linear-gradient(#ffb02e, #ff6a00); color: #fff; box-shadow: 0 5px 0 #b34500; text-shadow: 1px 1px 0 #a03c00; align-self: center; }
+.big:active { transform: translateY(3px); box-shadow: 0 2px 0 #b34500; }
+.panel button:not(.big) { padding: 8px 16px; border-radius: 12px; border: 2px solid #ffb347; background: #fff; color: #7a3300; font-weight: bold; }
+.opts, .howto { font-size: 12px; color: #4b3f5e; } .howto { line-height: 1.5; }
+.ver { font-size: 11px; color: #998; }
+#loading { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 30; background: #ff7a00; padding: 10px 18px; border-radius: 12px; font-weight: bold; }
+#loading.done { display: none; }
+#hud { position: fixed; inset: 0; pointer-events: none; z-index: 5; font-weight: 900; text-shadow: 2px 2px 0 rgba(0,0,0,.45); }
+#scoreBox { position: absolute; left: max(12px, env(safe-area-inset-left)); top: max(8px, env(safe-area-inset-top)); }
+#score { font-size: 30px; color: #fff; } #combo { font-size: 18px; color: #ffe14d; min-height: 22px; } #combo.hot { color: #ff6b3b; animation: pulse .4s infinite alternate; }
+@keyframes pulse { to { transform: scale(1.12); } }
+#midBox { position: absolute; left: 50%; top: max(8px, env(safe-area-inset-top)); transform: translateX(-50%); text-align: center; }
+#pctBar { width: min(300px, 38vw); height: 20px; background: rgba(0,0,0,.35); border-radius: 10px; position: relative; overflow: hidden; border: 2px solid rgba(255,255,255,.8); }
+#pctFill { position: absolute; inset: 0 auto 0 0; width: 0; background: linear-gradient(90deg, #ffcc33, #ff4d2e); }
+#pctTxt { position: relative; font-size: 12px; line-height: 16px; }
+#timer { font-size: 15px; margin-top: 3px; }
+#rightBox { position: absolute; right: max(12px, env(safe-area-inset-right)); top: max(8px, env(safe-area-inset-top)); display: flex; gap: 10px; align-items: center; font-size: 14px; }
+#pauseBtn { pointer-events: auto; width: 44px; height: 44px; border-radius: 50%; border: 3px solid #fff; background: rgba(0,0,0,.3); color: #fff; font-size: 16px; }
+#heldTip { position: absolute; left: 50%; top: 70px; transform: translateX(-50%); font-size: 14px; color: #fff6c2; white-space: nowrap; }
+#toast { position: absolute; left: 50%; top: 96px; transform: translateX(-50%); font-size: 18px; color: #fff; opacity: 0; white-space: nowrap; background: rgba(255,90,0,.75); padding: 6px 14px; border-radius: 12px; text-shadow: none; }
+#toast.show { animation: toast 3.2s; }
+@keyframes toast { 0% { opacity: 0; transform: translate(-50%, -10px); } 10%, 80% { opacity: 1; transform: translate(-50%, 0); } 100% { opacity: 0; } }
+#pops { position: fixed; inset: 0; pointer-events: none; z-index: 4; overflow: hidden; }
+.pop { position: absolute; left: 0; top: 0; font-weight: 900; font-size: 15px; color: #fff; text-shadow: 2px 2px 0 #000; white-space: nowrap; }
+.pop.glass { color: #bff0ff; } .pop.big { font-size: 26px; color: #ffdf3b; text-shadow: 3px 3px 0 #a33; } .pop.gulp { font-size: 24px; color: #9dff7a; } .pop.small { font-size: 12px; opacity: .8; }
+#touch { position: fixed; inset: 0; pointer-events: none; z-index: 6; }
+#touch[hidden] { display: none; }
+#joyzone { position: absolute; left: 0; bottom: 0; width: 42%; height: 62%; pointer-events: auto; touch-action: none; }
+#joyzone .hint { position: absolute; left: max(24px, env(safe-area-inset-left)); bottom: 18px; font-size: 12px; opacity: .6; text-shadow: 1px 1px 0 #000; }
+#joy { position: absolute; left: 110px; top: calc(100% - 110px); width: 120px; height: 120px; margin: -60px 0 0 -60px; border-radius: 50%; background: rgba(255,255,255,.18); border: 3px solid rgba(255,255,255,.55); opacity: .55; }
+#joy.on { opacity: 1; }
+#knob { position: absolute; left: 50%; top: 50%; width: 54px; height: 54px; margin: -27px 0 0 -27px; border-radius: 50%; background: rgba(255,255,255,.85); box-shadow: 0 3px 0 rgba(0,0,0,.25); }
+#btns { position: absolute; right: max(14px, env(safe-area-inset-right)); bottom: max(12px, env(safe-area-inset-bottom)); width: 230px; height: 200px; pointer-events: none; }
+#btns button { position: absolute; pointer-events: auto; border-radius: 50%; border: 3px solid rgba(255,255,255,.9); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1; text-shadow: 1px 1px 0 #000; touch-action: none; }
+#btns button span { font-size: 10px; font-weight: bold; margin-top: 2px; }
+#btns .b1 { width: 96px; height: 96px; right: 0; bottom: 0; font-size: 36px; background: rgba(255,80,40,.75); }
+#btns .b2 { width: 62px; height: 62px; font-size: 22px; background: rgba(40,40,60,.55); }
+#bJump { right: 106px; bottom: 0; } #bGrab { right: 0; bottom: 108px; } #bClimb { right: 84px; bottom: 82px; }
+#btns button.down { transform: scale(.9); filter: brightness(1.4); }
+#rotate { display: none; }
+@media (orientation: portrait) and (pointer: coarse) { #rotate { display: block; position: fixed; bottom: 46%; left: 50%; transform: translateX(-50%); z-index: 3; background: rgba(0,0,0,.5); padding: 6px 12px; border-radius: 10px; font-size: 13px; pointer-events: none; } }
+@media (max-height: 450px) { .panel { padding: 10px 14px; gap: 6px; } .card { width: 120px; padding: 6px; } .card.sel { width: 160px; } .card .art { font-size: 36px; } .card.sel .art { font-size: 46px; } .card p { font-size: 11px; } h1 { font-size: 30px; } .big { font-size: 18px; padding: 8px 20px; } #score { font-size: 24px; } }

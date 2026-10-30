@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>Monkey Rampage</title>
+<meta name="theme-color" content="#ff8a1f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Rampage">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="pops"></div>
+
+<div id="hud" hidden>
+  <div id="scoreBox"><div id="score">0</div><div id="combo"></div></div>
+  <div id="midBox"><div id="pctBar"><div id="pctFill"></div><span id="pctTxt">0% destroyed</span></div><div id="timer">⏱ 0:00</div></div>
+  <div id="rightBox"><div id="hits">🎯 0</div><button id="pauseBtn" title="Pause (P)">❚❚</button></div>
+  <div id="heldTip"></div>
+  <div id="toast"></div>
+</div>
+
+<div id="touch" hidden>
+  <div id="joyzone"><div id="joy"><div id="knob"></div></div><span class="hint">drag to move</span></div>
+  <div id="btns">
+    <button id="bGrab" class="b2">✊<span>Grab</span></button>
+    <button id="bClimb" class="b2">🧗<span>Climb</span></button>
+    <button id="bJump" class="b2">⤒<span>Jump</span></button>
+    <button id="bPunch" class="b1">👊<span>Punch</span></button>
+  </div>
+</div>
+
+<div id="roster" class="screen">
+  <div class="panel wide">
+    <h1>MONKEY <span>RAMPAGE</span></h1>
+    <p class="sub">Pick your giant monster</p>
+    <div class="cards">
+      <div class="card sel">
+        <div class="art">🦍</div><h3>Bananas</h3><p>Giant monkey. Climbs anything, one-punch wrecker, throws cars, eats soldiers.</p>
+        <div class="stat">Power <i style="--v:80%"></i></div><div class="stat">Climb <i style="--v:100%"></i></div><div class="stat">Speed <i style="--v:60%"></i></div>
+        <div class="tag ok">✓ Indestructible</div>
+      </div>
+      <div class="card locked"><div class="art">🦎</div><h3>Lizzy</h3><p>Fire-breathing lizard.</p><div class="tag">🔒 Coming soon</div></div>
+      <div class="card locked"><div class="art">🐺</div><h3>Wolfgang</h3><p>Werewolf. Super leaps.</p><div class="tag">🔒 Coming soon</div></div>
+      <div class="card locked"><div class="art">🐙</div><h3>Octavia</h3><p>Grabs 8 things at once.</p><div class="tag">🔒 Coming soon</div></div>
+      <div class="card locked"><div class="art">🤖</div><h3>Mecha-Moo</h3><p>Robot cow with lasers.</p><div class="tag">🔒 Coming soon</div></div>
+    </div>
+    <button id="playBtn" class="big">PLAY AS BANANAS ▶</button>
+    <div class="opts"><label><input type="checkbox" id="lowGfx"> Low graphics (faster on older phones)</label></div>
+    <div class="howto">
+      <b>Computer:</b> WASD / arrows move · drag mouse to look · scroll zooms · click or F punch · Space jump · G grab / throw / eat · C climb or let go · P pause<br>
+      <b>Phone:</b> left thumb joystick · drag right side to look · Punch / Jump / Grab / Climb buttons<br>
+      Walk into a wall to climb it. Level 70% of the city to win.
+    </div>
+    <div class="ver">Version <span id="ver"></span></div>
+  </div>
+</div>
+
+<div id="pause" class="screen" hidden>
+  <div class="panel">
+    <h2>Paused</h2>
+    <button id="resumeBtn" class="big">Resume</button>
+    <button id="restartBtn">Restart</button>
+    <button id="rosterBtn">Monster select</button>
+    <button id="soundBtn">🔊 Sound on</button>
+    <label><input type="checkbox" id="lowGfx2"> Low graphics</label>
+  </div>
+</div>
+
+<div id="win" class="screen" hidden>
+  <div class="panel">
+    <h1>CITY <span>LEVELLED!</span></h1>
+    <p id="winStats"></p>
+    <button id="againBtn" class="big">Play again</button>
+  </div>
+</div>
+<div id="rotate">↻ Turn your phone sideways for the best view</div>
+<div id="loading">Building the city…</div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
